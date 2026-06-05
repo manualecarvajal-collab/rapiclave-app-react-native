@@ -1,17 +1,10 @@
 import { Fingerprint, Plus } from 'lucide-react'
-
-interface RegisteredFingerprint {
-  id: string
-  name: string
-  createdAt: string
-}
-
-const MOCK_FINGERPRINTS: RegisteredFingerprint[] = [
-  { id: '1', name: 'Right Thumb', createdAt: '2026-04-12' },
-  { id: '2', name: 'Left Index', createdAt: '2026-05-20' },
-]
+import { useStore } from '../store'
+import AddFingerprintSheet from '../components/AddFingerprintSheet'
 
 export default function IdentityPage() {
+  const { state, setSheet } = useStore()
+
   return (
     <div className="identity">
       <header className="identity-header">
@@ -31,14 +24,16 @@ export default function IdentityPage() {
         </div>
 
         <section className="identity-section">
-          <h3 className="identity-section-title">Registered Fingerprints</h3>
+          <h3 className="identity-section-title">
+            Registered Fingerprints ({state.fingerprints.length})
+          </h3>
           <div className="settings-group">
-            {MOCK_FINGERPRINTS.length === 0 ? (
+            {state.fingerprints.length === 0 ? (
               <div className="identity-empty">
                 <p>No fingerprints registered yet.</p>
               </div>
             ) : (
-              MOCK_FINGERPRINTS.map((fp) => (
+              state.fingerprints.map((fp) => (
                 <div key={fp.id} className="settings-row">
                   <div className="identity-fp-icon">
                     <Fingerprint size={18} />
@@ -58,11 +53,15 @@ export default function IdentityPage() {
           </div>
         </section>
 
-        <button className="identity-add-btn">
+        <button className="identity-add-btn" onClick={() => setSheet({ name: 'add-fingerprint' })}>
           <Plus size={20} />
           Add Fingerprint
         </button>
       </div>
+
+      {state.sheet?.name === 'add-fingerprint' && (
+        <AddFingerprintSheet onClose={() => setSheet(null)} />
+      )}
     </div>
   )
 }

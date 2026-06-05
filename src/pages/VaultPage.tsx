@@ -1,33 +1,17 @@
 import { useState } from 'react'
 import {
-  Globe,
-  Banknote,
-  Film,
-  Code2,
-  Cloud,
+  Globe, Banknote, Film, Code2, Cloud,
 } from 'lucide-react'
+import { useStore } from '../store'
 import TopBar from '../components/TopBar'
 import SearchBar from '../components/SearchBar'
 import Banner from '../components/Banner'
 import SegmentedControl from '../components/SegmentedControl'
 import VaultItem from '../components/VaultItem'
 import FAB from '../components/FAB'
-import BottomSheet from '../components/BottomSheet'
-
-interface Credential {
-  id: string
-  title: string
-  subtitle: string
-  type: 'passkey' | 'password'
-}
-
-const CREDENTIALS: Credential[] = [
-  { id: '1', title: 'Google', subtitle: 'user@gmail.com', type: 'passkey' },
-  { id: '2', title: 'Chase Bank', subtitle: '\u2022\u2022\u2022\u2022 4321', type: 'passkey' },
-  { id: '3', title: 'Netflix', subtitle: 'family@domain.com', type: 'password' },
-  { id: '4', title: 'GitHub', subtitle: 'dev@rapiclave.app', type: 'password' },
-  { id: '5', title: 'AWS Console', subtitle: 'admin@rapiclave.app', type: 'password' },
-]
+import AddCredentialSheet from '../components/AddCredentialSheet'
+import CredentialDetailSheet from '../components/CredentialDetailSheet'
+import type { Credential } from '../types'
 
 function getIcon(title: string) {
   switch (title) {
@@ -49,19 +33,24 @@ function getIconColor(title: string) {
 }
 
 export default function VaultPage() {
+  const { state, setSheet } = useStore()
   const [search, setSearch] = useState('')
   const [segment, setSegment] = useState('all')
-  const [sheetVisible, setSheetVisible] = useState(false)
+  const [selectedCred, setSelectedCred] = useState<Credential | null>(null)
 
-  const filtered = CREDENTIALS.filter((c) => {
+  const filtered = state.credentials.filter((c) => {
     if (segment === 'passkeys' && c.type !== 'passkey') return false
     if (segment === 'passwords' && c.type !== 'password') return false
     if (search) {
       const q = search.toLowerCase()
-      return c.title.toLowerCase().includes(q) || c.subtitle.toLowerCase().includes(q)
+      return c.title.toLowerCase().includes(q) || c.username.toLowerCase().includes(q)
     }
     return true
   })
+
+  const addSheet = state.sheet && ['add-menu', 'add-password', 'add-passkey', 'import-kdbx'].includes(state.sheet.name)
+    ? state.sheet as Extract<typeof state.sheet, { name: 'add-menu' | 'add-password' | 'add-passkey' | 'import-kdbx' }>
+    : null
 
   return (
     <div className="vault">
@@ -72,30 +61,43 @@ export default function VaultPage() {
           <SearchBar value={search} onChangeText={setSearch} />
           <Banner />
           <SegmentedControl selected={segment} onSelect={setSegment} />
-          <h2 className="vault-section-title">Credentials</h2>
+          <h2 className="vault-section-title">Credentials {filtered.length > 0 && `(${filtered.length})`}</h2>
         </div>
 
-        <div className="vault-group">
-          {filtered.map((item) => (
-            <div key={item.id} className="vault-item-wrap">
-              <VaultItem
-                title={item.title}
-                subtitle={item.subtitle}
-                type={item.type}
-                icon={getIcon(item.title)}
-                iconColor={getIconColor(item.title)}
-              />
-            </div>
-          ))}
-        </div>
+        {filtered.length === 0 ? (
+          <div className="vault-empty">
+            <p>No credentials found</p>
+          </div>
+        ) : (
+          <div className="vault-group">
+            {filtered.map((item) => (
+              <div key={item.id} className="vault-item-wrap">
+                <VaultItem
+                  title={item.title}
+                  subtitle={item.username}
+                  type={item.type}
+                  icon={getIcon(item.title)}
+                  iconColor={getIconColor(item.title)}
+                  onPress={() => setSelectedCred(item)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <FAB onPress={() => setSheetVisible(true)} />
+      <FAB onPress={() => setSheet({ name: 'add-menu' })} />
 
-      <BottomSheet
-        visible={sheetVisible}
-        onClose={() => setSheetVisible(false)}
-      />
+      {addSheet && (
+        <AddCredentialSheet view={addSheet} onClose={() => setSheet(null)} />
+      )}
+
+      {selectedCred && (
+        <CredentialDetailSheet
+          credential={selectedCred}
+          onClose={() => setSelectedCred(null)}
+        />
+      )}
     </div>
   )
 }

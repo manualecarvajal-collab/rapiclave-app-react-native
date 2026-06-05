@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import { ChevronRight, LogOut } from 'lucide-react'
+import { useStore } from '../store'
 
 interface SettingsPageProps {
   onLogout: () => void
 }
 
 export default function SettingsPage({ onLogout }: SettingsPageProps) {
-  const [biometricEnabled, setBiometricEnabled] = useState(true)
-  const [travelMode, setTravelMode] = useState(false)
+  const { state, updateSettings } = useStore()
 
   return (
     <div className="settings">
@@ -22,10 +21,10 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
             <div className="settings-row">
               <span className="settings-row-label">Biometric Unlock</span>
               <button
-                className={`toggle${biometricEnabled ? ' active' : ''}`}
-                onClick={() => setBiometricEnabled(!biometricEnabled)}
+                className={`toggle${state.settings.biometricEnabled ? ' active' : ''}`}
+                onClick={() => updateSettings({ biometricEnabled: !state.settings.biometricEnabled })}
                 role="switch"
-                aria-checked={biometricEnabled}
+                aria-checked={state.settings.biometricEnabled}
               >
                 <span className="toggle-thumb" />
               </button>
@@ -54,10 +53,10 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
                 </span>
               </div>
               <button
-                className={`toggle${travelMode ? ' active' : ''}`}
-                onClick={() => setTravelMode(!travelMode)}
+                className={`toggle${state.settings.travelMode ? ' active' : ''}`}
+                onClick={() => updateSettings({ travelMode: !state.settings.travelMode })}
                 role="switch"
-                aria-checked={travelMode}
+                aria-checked={state.settings.travelMode}
               >
                 <span className="toggle-thumb" />
               </button>

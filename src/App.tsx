@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { StoreProvider, useStore } from './store'
 import LoginPage from './pages/LoginPage'
 import VaultPage from './pages/VaultPage'
 import IdentityPage from './pages/IdentityPage'
@@ -8,7 +9,8 @@ import './App.css'
 
 type Screen = 'login' | 'vault' | 'identity' | 'settings'
 
-export default function App() {
+function AppShell() {
+  const { state, setSheet } = useStore()
   const [screen, setScreen] = useState<Screen>('vault')
   const [tab, setTab] = useState('vault')
 
@@ -17,6 +19,7 @@ export default function App() {
     if (key === 'vault') setScreen('vault')
     else if (key === 'identity') setScreen('identity')
     else if (key === 'settings') setScreen('settings')
+    setSheet(null)
   }
 
   if (screen === 'login') {
@@ -34,5 +37,13 @@ export default function App() {
       </div>
       <BottomNav active={tab} onTabPress={handleTabPress} />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <StoreProvider>
+      <AppShell />
+    </StoreProvider>
   )
 }
