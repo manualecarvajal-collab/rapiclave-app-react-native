@@ -22,7 +22,7 @@ export default function CredentialDetailSheet({ credential, onClose }: Credentia
   }
 
   const handleDelete = () => {
-    if (confirm('Delete this credential?')) {
+    if (confirm('¿Eliminar esta credencial?')) {
       removeCredential(credential.id)
       setSheet(null)
     }
@@ -39,17 +39,17 @@ export default function CredentialDetailSheet({ credential, onClose }: Credentia
 
         <div className="detail-card">
           <div className="detail-field">
-            <span className="detail-label">Username / Email</span>
+            <span className="detail-label">Usuario / Email</span>
             <div className="detail-value-row">
               <span className="detail-value">{credential.username}</span>
               <button className="detail-copy" onClick={() => copyToClipboard(credential.username, 'username')}>
-                {copied === 'username' ? <span style={{ color: 'var(--color-accent)', fontSize: 12, fontWeight: 600 }}>Copied!</span> : <Copy size={16} />}
+                {copied === 'username' ? <span style={{ color: 'var(--color-accent)', fontSize: 12, fontWeight: 600 }}>Copiado</span> : <Copy size={16} />}
               </button>
             </div>
           </div>
 
           <div className="detail-field">
-            <span className="detail-label">Password</span>
+            <span className="detail-label">Contraseña</span>
             <div className="detail-value-row">
               <span className="detail-value-mono">
                 {showPassword ? credential.password : '\u2022'.repeat(credential.password.length)}
@@ -59,24 +59,24 @@ export default function CredentialDetailSheet({ credential, onClose }: Credentia
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
                 <button className="detail-icon-btn" onClick={() => copyToClipboard(credential.password, 'password')}>
-                  {copied === 'password' ? <span style={{ color: 'var(--color-accent)', fontSize: 12, fontWeight: 600 }}>Copied!</span> : <Copy size={16} />}
+                  {copied === 'password' ? <span style={{ color: 'var(--color-accent)', fontSize: 12, fontWeight: 600 }}>Copiado</span> : <Copy size={16} />}
                 </button>
               </div>
             </div>
           </div>
 
           <div className="detail-field">
-            <span className="detail-label">Type</span>
+            <span className="detail-label">Tipo</span>
             <div className="detail-value-row">
               <span className={`badge ${credential.type === 'passkey' ? 'badge-passkey' : 'badge-password'}`}>
-                {credential.type === 'passkey' ? <><Key size={11} /> Passkey</> : 'Password'}
+                {credential.type === 'passkey' ? <><Key size={11} /> Passkey</> : 'Contraseña'}
               </span>
             </div>
           </div>
 
           {credential.uri && (
             <div className="detail-field">
-              <span className="detail-label">Website</span>
+              <span className="detail-label">Sitio Web</span>
               <div className="detail-value-row">
                 <Globe size={14} style={{ color: 'var(--color-label-secondary)', flexShrink: 0 }} />
                 <span className="detail-value">{credential.uri}</span>
@@ -85,7 +85,7 @@ export default function CredentialDetailSheet({ credential, onClose }: Credentia
           )}
 
           <div className="detail-field">
-            <span className="detail-label">Created</span>
+            <span className="detail-label">Creado</span>
             <div className="detail-value-row">
               <Calendar size={14} style={{ color: 'var(--color-label-secondary)', flexShrink: 0 }} />
               <span className="detail-value">{credential.createdAt}</span>
@@ -95,7 +95,7 @@ export default function CredentialDetailSheet({ credential, onClose }: Credentia
 
         <button className="detail-delete" onClick={handleDelete}>
           <Trash2 size={16} />
-          Delete Credential
+          Eliminar Credencial
         </button>
       </div>
     </div>

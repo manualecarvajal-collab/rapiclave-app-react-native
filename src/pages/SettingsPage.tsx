@@ -11,15 +11,15 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
   return (
     <div className="settings">
       <header className="settings-header">
-        <h1 className="settings-title">Settings</h1>
+        <h1 className="settings-title">Ajustes</h1>
       </header>
 
       <div className="settings-content">
         <section className="settings-section">
-          <h3 className="settings-section-title">Security</h3>
+          <h3 className="settings-section-title">Seguridad</h3>
           <div className="settings-group">
             <div className="settings-row">
-              <span className="settings-row-label">Biometric Unlock</span>
+              <span className="settings-row-label">Desbloqueo Biométrico</span>
               <button
                 className={`toggle${state.settings.biometricEnabled ? ' active' : ''}`}
                 onClick={() => updateSettings({ biometricEnabled: !state.settings.biometricEnabled })}
@@ -31,25 +31,25 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
             </div>
 
             <button className="settings-row-btn">
-              <span className="settings-row-label">Change Master Password</span>
+              <span className="settings-row-label">Cambiar Contraseña Maestra</span>
               <ChevronRight size={18} className="settings-chevron" />
             </button>
 
             <button className="settings-row-btn">
-              <span className="settings-row-label">Account Recovery Key (ARK)</span>
+              <span className="settings-row-label">Clave de Recuperación (ARK)</span>
               <ChevronRight size={18} className="settings-chevron" />
             </button>
           </div>
         </section>
 
         <section className="settings-section">
-          <h3 className="settings-section-title">Privacy</h3>
+          <h3 className="settings-section-title">Privacidad</h3>
           <div className="settings-group">
             <div className="settings-row">
               <div className="settings-row-text">
-                <span className="settings-row-label">Travel Mode</span>
+                <span className="settings-row-label">Modo Viaje</span>
                 <span className="settings-row-hint">
-                  Temporarily remove sensitive vaults from device
+                  Elimina temporalmente bóvedas sensibles del dispositivo
                 </span>
               </div>
               <button
@@ -65,25 +65,25 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
         </section>
 
         <section className="settings-section">
-          <h3 className="settings-section-title">Data</h3>
+          <h3 className="settings-section-title">Datos</h3>
           <div className="settings-group">
             <button className="settings-row-btn">
-              <span className="settings-row-label">Export Vault</span>
+              <span className="settings-row-label">Exportar Bóveda</span>
               <ChevronRight size={18} className="settings-chevron" />
             </button>
 
             <button className="settings-row-btn">
-              <span className="settings-row-label">Import Vault</span>
+              <span className="settings-row-label">Importar Bóveda</span>
               <ChevronRight size={18} className="settings-chevron" />
             </button>
           </div>
         </section>
 
         <section className="settings-section">
-          <h3 className="settings-section-title">About</h3>
+          <h3 className="settings-section-title">Acerca de</h3>
           <div className="settings-group">
             <div className="settings-row">
-              <span className="settings-row-label">Version</span>
+              <span className="settings-row-label">Versión</span>
               <span className="settings-row-value">1.0.0</span>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
 
         <button className="settings-lock" onClick={onLogout}>
           <LogOut size={18} />
-          Lock Vault
+          Cerrar Bóveda
         </button>
       </div>
     </div>

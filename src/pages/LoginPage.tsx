@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Shield } from 'lucide-react'
+import { Shield, AlertTriangle } from 'lucide-react'
 
 interface LoginPageProps {
   onUnlock: () => void
@@ -22,8 +22,8 @@ export default function LoginPage({ onUnlock }: LoginPageProps) {
         <h1 className="login-title">Rapiclave</h1>
         <p className="login-subtitle">
           {isFirstTime
-            ? 'Create your master password'
-            : 'Enter your master password'}
+            ? 'Crea tu contraseña maestra'
+            : 'Ingresa tu contraseña maestra'}
         </p>
       </div>
 
@@ -32,15 +32,26 @@ export default function LoginPage({ onUnlock }: LoginPageProps) {
           <input
             className="login-input"
             type="password"
-            placeholder="Master Password"
+            placeholder="Contraseña Maestra"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoFocus
           />
         </div>
 
+        {isFirstTime && (
+          <div className="login-disclaimer">
+            <AlertTriangle size={16} />
+            <p>
+              Esta contraseña <strong>no puede ser recuperada</strong> si la olvidas.
+              No existe un "olvidé mi contraseña". RapiClave no tiene acceso a ella.
+              Guárdala en un lugar seguro o usa un gestor de contraseñas.
+            </p>
+          </div>
+        )}
+
         <button className="login-btn" type="submit">
-          {isFirstTime ? 'Create Vault' : 'Unlock'}
+          {isFirstTime ? 'Crear Bóveda' : 'Desbloquear'}
         </button>
 
         <button
@@ -49,13 +60,14 @@ export default function LoginPage({ onUnlock }: LoginPageProps) {
           onClick={() => setIsFirstTime(!isFirstTime)}
         >
           {isFirstTime
-            ? 'Already have a vault? Sign in'
-            : 'First time? Create a master password'}
+            ? '¿Ya tienes una bóveda? Inicia sesión'
+            : '¿Primera vez? Crea una contraseña maestra'}
         </button>
       </form>
 
       <p className="login-footer">
-        Your data is encrypted end-to-end. Rapiclave never sees your master password.
+        Tus datos están cifrados de extremo a extremo. RapiClave nunca ve tu
+        contraseña maestra.
       </p>
     </div>
   )

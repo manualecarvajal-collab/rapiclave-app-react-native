@@ -83,6 +83,23 @@
   opacity: 0.9;
 }
 
+.login-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(186, 26, 26, 0.06);
+  border: 1px solid rgba(186, 26, 26, 0.15);
+  border-radius: var(--radius-md);
+  color: var(--color-on-error-container);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.login-disclaimer strong {
+  font-weight: 600;
+}
+
 .login-link {
   background: none;
   border: none;

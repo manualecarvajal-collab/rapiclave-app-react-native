@@ -4,9 +4,10 @@ export default function Banner() {
   return (
     <div className="banner">
       <div className="banner-content">
-        <h3 className="banner-title">Passkeys log you in 14× faster</h3>
+        <h3 className="banner-title">Las Passkeys te autentican 14× más rápido</h3>
         <p className="banner-subtitle">
-          Upgrade your security with seamless, passwordless login across all devices.
+          Mejora tu seguridad con inicio de sesión sin contraseña en todos tus
+          dispositivos.
         </p>
       </div>
       <div className="banner-icon">

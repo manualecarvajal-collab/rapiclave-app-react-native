@@ -4,9 +4,9 @@ interface Segment {
 }
 
 const SEGMENTS: Segment[] = [
-  { key: 'all', label: 'All' },
+  { key: 'all', label: 'Todas' },
   { key: 'passkeys', label: 'Passkeys' },
-  { key: 'passwords', label: 'Passwords' },
+  { key: 'passwords', label: 'Contraseñas' },
 ]
 
 interface SegmentedControlProps {

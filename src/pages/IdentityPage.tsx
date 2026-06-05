@@ -8,7 +8,7 @@ export default function IdentityPage() {
   return (
     <div className="identity">
       <header className="identity-header">
-        <h1 className="identity-title">Identity</h1>
+        <h1 className="identity-title">Identidad</h1>
       </header>
 
       <div className="identity-content">
@@ -16,21 +16,21 @@ export default function IdentityPage() {
           <div className="identity-card-icon">
             <Fingerprint size={40} />
           </div>
-          <h2 className="identity-card-title">Passkey Biometrics</h2>
+          <h2 className="identity-card-title">Biometría Passkey</h2>
           <p className="identity-card-subtitle">
-            Registered fingerprints used for passwordless authentication across
-            your vault.
+            Huellas registradas para autenticación sin contraseña en tu
+            bóveda.
           </p>
         </div>
 
         <section className="identity-section">
           <h3 className="identity-section-title">
-            Registered Fingerprints ({state.fingerprints.length})
+            Huellas Registradas ({state.fingerprints.length})
           </h3>
           <div className="settings-group">
             {state.fingerprints.length === 0 ? (
               <div className="identity-empty">
-                <p>No fingerprints registered yet.</p>
+                <p>No hay huellas registradas aún.</p>
               </div>
             ) : (
               state.fingerprints.map((fp) => (
@@ -41,11 +41,11 @@ export default function IdentityPage() {
                   <div className="settings-row-text">
                     <span className="settings-row-label">{fp.name}</span>
                     <span className="settings-row-hint">
-                      Registered on {fp.createdAt}
+                      Registrada el {fp.createdAt}
                     </span>
                   </div>
                   <span className="badge badge-passkey" style={{ flexShrink: 0 }}>
-                    Active
+                    Activa
                   </span>
                 </div>
               ))
@@ -55,7 +55,7 @@ export default function IdentityPage() {
 
         <button className="identity-add-btn" onClick={() => setSheet({ name: 'add-fingerprint' })}>
           <Plus size={20} />
-          Add Fingerprint
+          Añadir Huella
         </button>
       </div>
 

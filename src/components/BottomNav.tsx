@@ -7,9 +7,9 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { key: 'vault', label: 'Vault', icon: LockKeyhole },
-  { key: 'identity', label: 'Identity', icon: Fingerprint },
-  { key: 'settings', label: 'Settings', icon: Settings },
+  { key: 'vault', label: 'Bóveda', icon: LockKeyhole },
+  { key: 'identity', label: 'Identidad', icon: Fingerprint },
+  { key: 'settings', label: 'Ajustes', icon: Settings },
 ]
 
 interface BottomNavProps {

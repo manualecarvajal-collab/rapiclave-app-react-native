@@ -54,19 +54,19 @@ export default function VaultPage() {
 
   return (
     <div className="vault">
-      <TopBar title="Identity Orchestrator" />
+      <TopBar title="Rapiclave" />
 
       <div className="vault-list">
         <div className="vault-list-header">
           <SearchBar value={search} onChangeText={setSearch} />
           <Banner />
           <SegmentedControl selected={segment} onSelect={setSegment} />
-          <h2 className="vault-section-title">Credentials {filtered.length > 0 && `(${filtered.length})`}</h2>
+          <h2 className="vault-section-title">Credenciales {filtered.length > 0 && `(${filtered.length})`}</h2>
         </div>
 
         {filtered.length === 0 ? (
           <div className="vault-empty">
-            <p>No credentials found</p>
+            <p>No se encontraron credenciales</p>
           </div>
         ) : (
           <div className="vault-group">

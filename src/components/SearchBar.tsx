@@ -9,7 +9,7 @@ interface SearchBarProps {
 export default function SearchBar({
   value,
   onChangeText,
-  placeholder = 'Search vault...',
+  placeholder = 'Buscar en la bóveda...',
 }: SearchBarProps) {
   return (
     <div className="searchbar">
