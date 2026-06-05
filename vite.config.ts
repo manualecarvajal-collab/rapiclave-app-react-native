@@ -3,35 +3,36 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 const stubs = path.resolve(__dirname, 'web/stubs');
+const rnWebRoot = path.resolve(__dirname, 'node_modules/react-native-web');
 
 export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'rn-web-stubs',
+      name: 'rn-web',
       enforce: 'pre',
       resolveId(source) {
         if (source === 'react-native/Libraries/Utilities/codegenNativeComponent') {
-          return this.resolve(
-            path.join(stubs, 'Libraries/Utilities/codegenNativeComponent.js'),
-          );
+          return path.join(stubs, 'Libraries/Utilities/codegenNativeComponent.js');
         }
         if (source === 'react-native/Libraries/EventEmitter/NativeEventEmitter') {
-          return this.resolve(
-            path.join(stubs, 'Libraries/EventEmitter/NativeEventEmitter.js'),
-          );
+          return path.join(stubs, 'Libraries/EventEmitter/NativeEventEmitter.js');
         }
         if (source === 'react-native') {
-          return this.resolve('react-native-web');
+          return path.join(rnWebRoot, 'dist/index.js');
         }
         if (source.startsWith('react-native/')) {
-          const webPath = source.replace('react-native/', 'react-native-web/dist/');
-          return this.resolve(webPath);
+          const webPath = source.replace('react-native/', '');
+          return path.join(rnWebRoot, 'dist', webPath);
         }
         return null;
       },
     },
   ],
+  optimizeDeps: {
+    exclude: ['react-native', 'react-native-safe-area-context'],
+    include: ['react-native-web'],
+  },
   server: {
     port: 3000,
     open: false,
