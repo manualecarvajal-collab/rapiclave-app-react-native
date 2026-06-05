@@ -1,34 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --color-primary: #1E3A5F;
-  --color-primary-hover: #2A4F7F;
-  --color-on-primary: #FFFFFF;
-  --color-accent: #059669;
-  --color-accent-hover: #047857;
-  --color-background: #0F172A;
-  --color-surface: #1A2332;
-  --color-surface-hover: #1F2A3D;
-  --color-foreground: #FFFFFF;
-  --color-muted: #10192E;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.12);
-  --color-text-secondary: #94A3B8;
-  --color-text-tertiary: #64748B;
-  --color-destructive: #DC2626;
-  --color-destructive-hover: #B91C1C;
-  --color-badge-passkey: rgba(5, 150, 105, 0.15);
-  --color-badge-passkey-border: rgba(5, 150, 105, 0.3);
-  --color-badge-passkey-text: #34D399;
-  --color-overlay: rgba(0, 0, 0, 0.6);
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --radius-sm: 6px;
+  --color-primary: #0058bc;
+  --color-primary-hover: #004ca0;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d8e2ff;
+  --color-on-primary-container: #001a41;
+  --color-secondary: #006e28;
+  --color-secondary-container: #6ffb85;
+  --color-on-secondary-container: #00732a;
+  --color-accent: #0058bc;
+  --color-accent-hover: #004ca0;
+  --color-background: #faf9fe;
+  --color-surface: #ffffff;
+  --color-surface-dim: #dad9df;
+  --color-surface-bright: #faf9fe;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f4f3f8;
+  --color-surface-container: #eeedf3;
+  --color-surface-container-high: #e9e7ed;
+  --color-surface-container-highest: #e3e2e7;
+  --color-on-surface: #1a1b1f;
+  --color-on-surface-variant: #414755;
+  --color-inverse-surface: #2f3034;
+  --color-inverse-on-surface: #f1f0f5;
+  --color-outline: #717786;
+  --color-outline-variant: #c1c6d7;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-system-background: #ffffff;
+  --color-system-secondary-background: #f2f2f7;
+  --color-separator: #c6c6c8;
+  --color-label-primary: #000000;
+  --color-label-secondary: #3c3c4399;
+  --color-badge-passkey-bg: rgba(0, 115, 42, 0.08);
+  --color-badge-passkey-text: #00732a;
+  --color-badge-passkey-border: rgba(0, 115, 42, 0.2);
+  --color-overlay: rgba(0, 0, 0, 0.3);
+  --color-fab-shadow: rgba(0, 0, 0, 0.15);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --radius-sm: 4px;
   --radius-md: 10px;
-  --radius-lg: 14px;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+  --shadow-fab: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-sheet: 0 -2px 20px rgba(0, 0, 0, 0.08);
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
 }
@@ -43,12 +62,13 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   font-family: var(--font-sans);
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--color-system-secondary-background);
+  color: var(--color-on-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,15 +78,5 @@ input, button, textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 0;
 }
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 2px;
-}
-

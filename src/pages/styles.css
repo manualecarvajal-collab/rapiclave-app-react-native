@@ -6,7 +6,7 @@
   justify-content: center;
   height: 100%;
   padding: 24px;
-  background: var(--color-background);
+  background: var(--color-system-secondary-background);
 }
 
 .login-header {
@@ -15,22 +15,25 @@
 }
 
 .login-logo {
-  color: var(--color-accent);
+  color: var(--color-primary);
   margin-bottom: 16px;
 }
 
 .login-title {
-  font-family: var(--font-mono);
   font-size: 34px;
   font-weight: 700;
-  color: var(--color-foreground);
-  letter-spacing: -0.5px;
+  color: var(--color-on-surface);
+  letter-spacing: 0.37px;
+  line-height: 41px;
   margin-bottom: 8px;
 }
 
 .login-subtitle {
-  font-size: 15px;
-  color: var(--color-text-secondary);
+  font-size: 17px;
+  color: var(--color-label-secondary);
+  font-weight: 400;
+  letter-spacing: -0.41px;
+  line-height: 22px;
 }
 
 .login-form {
@@ -38,22 +41,19 @@
   max-width: 320px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-
-.login-input-wrap {
-  position: relative;
+  gap: 16px;
 }
 
 .login-input {
   width: 100%;
   padding: 14px 16px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  color: var(--color-foreground);
-  font-size: 16px;
-  font-family: var(--font-mono);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  color: var(--color-on-surface);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.41px;
   outline: none;
   transition: border-color var(--transition-fast);
 }
@@ -63,39 +63,41 @@
 }
 
 .login-input::placeholder {
-  color: var(--color-text-tertiary);
-  font-family: var(--font-sans);
+  color: var(--color-label-secondary);
 }
 
 .login-btn {
   padding: 14px;
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
   border: none;
-  border-radius: var(--radius-md);
-  font-size: 16px;
+  border-radius: var(--radius-lg);
+  font-size: 17px;
   font-weight: 600;
+  letter-spacing: -0.41px;
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: opacity var(--transition-fast);
 }
 
 .login-btn:hover {
-  background: var(--color-accent-hover);
+  opacity: 0.9;
 }
 
 .login-link {
   background: none;
   border: none;
-  color: var(--color-text-tertiary);
-  font-size: 13px;
+  color: var(--color-primary);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.24px;
   cursor: pointer;
   text-align: center;
   padding: 4px;
-  transition: color var(--transition-fast);
+  transition: opacity var(--transition-fast);
 }
 
 .login-link:hover {
-  color: var(--color-text-secondary);
+  opacity: 0.7;
 }
 
 .login-footer {
@@ -103,9 +105,11 @@
   bottom: 32px;
   max-width: 320px;
   text-align: center;
-  font-size: 11px;
-  color: var(--color-text-tertiary);
-  line-height: 1.5;
+  font-size: 13px;
+  color: var(--color-label-secondary);
+  font-weight: 400;
+  letter-spacing: -0.08px;
+  line-height: 18px;
   padding: 0 24px;
 }
 
@@ -128,23 +132,39 @@
   flex-direction: column;
   gap: 12px;
   padding-top: 12px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 .vault-section-title {
-  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-text-tertiary);
+  color: var(--color-label-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  padding-left: 4px;
   margin-top: 4px;
 }
 
-.vault-items {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+/* Grouped list card */
+.vault-group {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.vault-item-wrap {
+  position: relative;
+}
+
+.vault-item-wrap:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 70px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-separator);
 }
 
 /* ── SettingsPage ── */
@@ -153,19 +173,22 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  background: var(--color-system-secondary-background);
 }
 
 .settings-header {
-  padding: 16px;
-  padding-top: 52px;
+  padding: 0 16px;
+  padding-top: 48px;
+  padding-bottom: 8px;
   flex-shrink: 0;
 }
 
 .settings-title {
-  font-family: var(--font-mono);
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 700;
-  color: var(--color-foreground);
+  color: var(--color-on-surface);
+  letter-spacing: 0.37px;
+  line-height: 41px;
 }
 
 .settings-content {
@@ -177,72 +200,111 @@
   gap: 20px;
 }
 
+/* Grouped list section */
 .settings-section {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .settings-section-title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-label-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 6px;
+  letter-spacing: 0.5px;
   padding-left: 4px;
+  margin-bottom: 6px;
+}
+
+.settings-group {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .settings-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  gap: 12px;
+  padding: 12px 16px;
+  gap: 10px;
+  position: relative;
+}
+
+.settings-row:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-separator);
 }
 
 .settings-row-btn {
   cursor: pointer;
   border: none;
+  background: none;
   color: inherit;
   text-align: left;
   width: 100%;
   transition: background var(--transition-fast);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+}
+
+.settings-row-btn:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-separator);
 }
 
 .settings-row-btn:hover {
-  background: var(--color-surface-hover);
+  background: var(--color-surface-container-low);
 }
 
 .settings-row-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-foreground);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--color-on-surface);
+  letter-spacing: -0.41px;
+  line-height: 22px;
+  flex: 1;
 }
 
 .settings-row-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   flex: 1;
 }
 
 .settings-row-hint {
-  font-size: 11px;
-  color: var(--color-text-tertiary);
-  line-height: 1.4;
+  font-size: 13px;
+  color: var(--color-label-secondary);
+  font-weight: 400;
+  letter-spacing: -0.08px;
+  line-height: 18px;
 }
 
 .settings-row-value {
-  font-size: 14px;
-  color: var(--color-text-tertiary);
-  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--color-label-secondary);
+  font-weight: 400;
+  letter-spacing: -0.41px;
+  line-height: 22px;
 }
 
 .settings-chevron {
-  color: var(--color-text-tertiary);
+  color: var(--color-separator);
   flex-shrink: 0;
 }
 
@@ -251,30 +313,29 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px;
+  padding: 12px;
   background: var(--color-surface);
-  border: 1px solid rgba(220, 38, 38, 0.2);
-  border-radius: var(--radius-md);
-  color: var(--color-destructive);
-  font-size: 15px;
+  border: none;
+  border-radius: var(--radius-lg);
+  color: var(--color-error);
+  font-size: 17px;
   font-weight: 600;
+  letter-spacing: -0.41px;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast);
   width: 100%;
-  margin-top: 8px;
 }
 
 .settings-lock:hover {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.4);
+  background: var(--color-error-container);
 }
 
 /* ── Toggle ── */
 .toggle {
-  width: 44px;
-  height: 26px;
-  border-radius: 13px;
-  background: var(--color-text-tertiary);
+  width: 51px;
+  height: 31px;
+  border-radius: 16px;
+  background: var(--color-surface-container-highest);
   border: none;
   cursor: pointer;
   position: relative;
@@ -284,22 +345,22 @@
 }
 
 .toggle.active {
-  background: var(--color-accent);
+  background: var(--color-secondary);
 }
 
 .toggle-thumb {
   display: block;
-  width: 22px;
-  height: 22px;
+  width: 27px;
+  height: 27px;
   border-radius: 50%;
   background: white;
   position: absolute;
   top: 2px;
   left: 2px;
   transition: transform var(--transition-fast);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .toggle.active .toggle-thumb {
-  transform: translateX(18px);
+  transform: translateX(20px);
 }

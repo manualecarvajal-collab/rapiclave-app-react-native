@@ -23,7 +23,7 @@ interface Credential {
 
 const CREDENTIALS: Credential[] = [
   { id: '1', title: 'Google', subtitle: 'user@gmail.com', type: 'passkey' },
-  { id: '2', title: 'Chase Bank', subtitle: '•••• 4321', type: 'passkey' },
+  { id: '2', title: 'Chase Bank', subtitle: '\u2022\u2022\u2022\u2022 4321', type: 'passkey' },
   { id: '3', title: 'Netflix', subtitle: 'family@domain.com', type: 'password' },
   { id: '4', title: 'GitHub', subtitle: 'dev@rapiclave.app', type: 'password' },
   { id: '5', title: 'AWS Console', subtitle: 'admin@rapiclave.app', type: 'password' },
@@ -44,7 +44,6 @@ function getIconColor(title: string) {
   switch (title) {
     case 'Netflix': return '#E50914'
     case 'AWS Console': return '#FF9900'
-    case 'GitHub': return undefined
     default: return undefined
   }
 }
@@ -76,16 +75,17 @@ export default function VaultPage() {
           <h2 className="vault-section-title">Credentials</h2>
         </div>
 
-        <div className="vault-items">
+        <div className="vault-group">
           {filtered.map((item) => (
-            <VaultItem
-              key={item.id}
-              title={item.title}
-              subtitle={item.subtitle}
-              type={item.type}
-              icon={getIcon(item.title)}
-              iconColor={getIconColor(item.title)}
-            />
+            <div key={item.id} className="vault-item-wrap">
+              <VaultItem
+                title={item.title}
+                subtitle={item.subtitle}
+                type={item.type}
+                icon={getIcon(item.title)}
+                iconColor={getIconColor(item.title)}
+              />
+            </div>
           ))}
         </div>
       </div>

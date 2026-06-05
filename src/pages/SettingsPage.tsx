@@ -18,71 +18,75 @@ export default function SettingsPage({ onLogout }: SettingsPageProps) {
       <div className="settings-content">
         <section className="settings-section">
           <h3 className="settings-section-title">Security</h3>
+          <div className="settings-group">
+            <div className="settings-row">
+              <span className="settings-row-label">Biometric Unlock</span>
+              <button
+                className={`toggle${biometricEnabled ? ' active' : ''}`}
+                onClick={() => setBiometricEnabled(!biometricEnabled)}
+                role="switch"
+                aria-checked={biometricEnabled}
+              >
+                <span className="toggle-thumb" />
+              </button>
+            </div>
 
-          <div className="settings-row">
-            <span className="settings-row-label">Biometric Unlock</span>
-            <button
-              className={`toggle${biometricEnabled ? ' active' : ''}`}
-              onClick={() => setBiometricEnabled(!biometricEnabled)}
-              role="switch"
-              aria-checked={biometricEnabled}
-            >
-              <span className="toggle-thumb" />
+            <button className="settings-row-btn">
+              <span className="settings-row-label">Change Master Password</span>
+              <ChevronRight size={18} className="settings-chevron" />
+            </button>
+
+            <button className="settings-row-btn">
+              <span className="settings-row-label">Account Recovery Key (ARK)</span>
+              <ChevronRight size={18} className="settings-chevron" />
             </button>
           </div>
-
-          <button className="settings-row settings-row-btn">
-            <span className="settings-row-label">Change Master Password</span>
-            <ChevronRight size={18} className="settings-chevron" />
-          </button>
-
-          <button className="settings-row settings-row-btn">
-            <span className="settings-row-label">Account Recovery Key (ARK)</span>
-            <ChevronRight size={18} className="settings-chevron" />
-          </button>
         </section>
 
         <section className="settings-section">
           <h3 className="settings-section-title">Privacy</h3>
-
-          <div className="settings-row">
-            <div className="settings-row-text">
-              <span className="settings-row-label">Travel Mode</span>
-              <span className="settings-row-hint">
-                Temporarily remove sensitive vaults from device
-              </span>
+          <div className="settings-group">
+            <div className="settings-row">
+              <div className="settings-row-text">
+                <span className="settings-row-label">Travel Mode</span>
+                <span className="settings-row-hint">
+                  Temporarily remove sensitive vaults from device
+                </span>
+              </div>
+              <button
+                className={`toggle${travelMode ? ' active' : ''}`}
+                onClick={() => setTravelMode(!travelMode)}
+                role="switch"
+                aria-checked={travelMode}
+              >
+                <span className="toggle-thumb" />
+              </button>
             </div>
-            <button
-              className={`toggle${travelMode ? ' active' : ''}`}
-              onClick={() => setTravelMode(!travelMode)}
-              role="switch"
-              aria-checked={travelMode}
-            >
-              <span className="toggle-thumb" />
-            </button>
           </div>
         </section>
 
         <section className="settings-section">
           <h3 className="settings-section-title">Data</h3>
+          <div className="settings-group">
+            <button className="settings-row-btn">
+              <span className="settings-row-label">Export Vault</span>
+              <ChevronRight size={18} className="settings-chevron" />
+            </button>
 
-          <button className="settings-row settings-row-btn">
-            <span className="settings-row-label">Export Vault</span>
-            <ChevronRight size={18} className="settings-chevron" />
-          </button>
-
-          <button className="settings-row settings-row-btn">
-            <span className="settings-row-label">Import Vault</span>
-            <ChevronRight size={18} className="settings-chevron" />
-          </button>
+            <button className="settings-row-btn">
+              <span className="settings-row-label">Import Vault</span>
+              <ChevronRight size={18} className="settings-chevron" />
+            </button>
+          </div>
         </section>
 
         <section className="settings-section">
           <h3 className="settings-section-title">About</h3>
-
-          <div className="settings-row">
-            <span className="settings-row-label">Version</span>
-            <span className="settings-row-value">1.0.0</span>
+          <div className="settings-group">
+            <div className="settings-row">
+              <span className="settings-row-label">Version</span>
+              <span className="settings-row-value">1.0.0</span>
+            </div>
           </div>
         </section>
 
