@@ -1,7 +1,12 @@
-import { AppRegistry } from 'react-native';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import App from '../App';
 
-AppRegistry.registerComponent('Rapiclave', () => App);
-AppRegistry.runApplication('Rapiclave', {
-  rootTag: document.getElementById('root')!,
-});
+const root = document.getElementById('root');
+if (root) {
+  createRoot(root).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}

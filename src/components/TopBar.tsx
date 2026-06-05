@@ -10,7 +10,7 @@ export default function TopBar({ title, onAvatarPress }: TopBarProps) {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Text style={styles.icon}>⟐</Text>
+        <Text style={styles.icon}>⚡</Text>
       </View>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity style={styles.avatar} onPress={onAvatarPress}>
