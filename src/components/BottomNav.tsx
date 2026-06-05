@@ -1,4 +1,4 @@
-import { type LucideIcon, LockKeyhole, ScanLine, UserCircle2, Settings } from 'lucide-react'
+import { type LucideIcon, LockKeyhole, Fingerprint, Settings } from 'lucide-react'
 
 interface Tab {
   key: string
@@ -8,8 +8,7 @@ interface Tab {
 
 const TABS: Tab[] = [
   { key: 'vault', label: 'Vault', icon: LockKeyhole },
-  { key: 'scan', label: 'Scan', icon: ScanLine },
-  { key: 'identity', label: 'Identity', icon: UserCircle2 },
+  { key: 'identity', label: 'Identity', icon: Fingerprint },
   { key: 'settings', label: 'Settings', icon: Settings },
 ]
 

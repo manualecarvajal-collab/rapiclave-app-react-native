@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import LoginPage from './pages/LoginPage'
 import VaultPage from './pages/VaultPage'
+import IdentityPage from './pages/IdentityPage'
 import SettingsPage from './pages/SettingsPage'
 import BottomNav from './components/BottomNav'
 import './App.css'
 
-type Screen = 'login' | 'vault' | 'settings' | 'scan' | 'identity'
+type Screen = 'login' | 'vault' | 'identity' | 'settings'
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('vault')
@@ -13,8 +14,9 @@ export default function App() {
 
   const handleTabPress = (key: string) => {
     setTab(key)
-    if (key === 'settings') setScreen('settings')
-    else setScreen('vault')
+    if (key === 'vault') setScreen('vault')
+    else if (key === 'identity') setScreen('identity')
+    else if (key === 'settings') setScreen('settings')
   }
 
   if (screen === 'login') {
@@ -25,6 +27,7 @@ export default function App() {
     <div className="app">
       <div className="app-content">
         {screen === 'vault' && <VaultPage />}
+        {screen === 'identity' && <IdentityPage />}
         {screen === 'settings' && (
           <SettingsPage onLogout={() => setScreen('login')} />
         )}
